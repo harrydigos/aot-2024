@@ -31,9 +31,9 @@ type Parse<
     ...infer Rest extends string[],
   ]
     ? First extends `${string} ${infer VarName} = ${string}`
-      ? Parse<Join<Rest>, Parsed, [...Declared, Trim<VarName>], Used>
+      ? Parse<Join<Rest>, Parsed, [...Declared, VarName], Used>
       : First extends `${string}(${infer Arg})`
-        ? Parse<Join<Rest>, Parsed, Declared, [...Used, Trim<Arg>]>
+        ? Parse<Join<Rest>, Parsed, Declared, [...Used, Arg]>
         : Parse<Join<Rest>, Parsed, Declared, Used>
     : { declared: Declared; used: Used };
 
